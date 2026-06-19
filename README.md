@@ -34,6 +34,12 @@ A tiny multilingual spell checker with correction suggestions. Dictionaries are 
 npm i fixnow
 ```
 
+or
+
+```bash
+bun i fixnow
+```
+
 ## Languages
 
 | Code | Language   | Dictionary license |
