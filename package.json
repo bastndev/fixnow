@@ -20,8 +20,7 @@
   },
   "files": [
     "dist",
-    "dictionaries",
-    "THIRD-PARTY-NOTICES.md"
+    "dictionaries"
   ],
   "sideEffects": false,
   "scripts": {
