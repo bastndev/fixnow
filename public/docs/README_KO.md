@@ -24,45 +24,45 @@
 </p>
 </div>
 
-A tiny multilingual spell checker with correction suggestions. Dictionaries are bundled, so `npm i fixnow` gives you everything — with **zero runtime dependencies**, in both ESM and CommonJS.
+교정 제안 기능이 있는 작은 다국어 맞춤법 검사기. 사전이 번들로 제공되므로 `npm i fixnow` 만으로 필요한 모든 것을 얻을 수 있습니다 — ESM 및 CommonJS 모두에서 **런타임 종속성 제로**입니다.
 
-## Install
+## 설치
 
 ```bash
 npm i fixnow
 ```
 
-## Languages
+## 언어
 
-| Code | Language   | Dictionary license |
+| 코드 | 언어 | 사전 라이선스 |
 | ---- | ---------- | ------------------ |
-| `ar` | Arabic     | LGPL-3.0           |
-| `de` | German     | LGPL-3.0           |
-| `es` | Spanish    | LGPL-3.0           |
-| `fr` | French     | MIT                |
-| `vi` | Vietnamese | MIT                |
+| `ar` | 아랍어 | LGPL-3.0 |
+| `de` | 독일어 | LGPL-3.0 |
+| `es` | 스페인어 | LGPL-3.0 |
+| `fr` | 프랑스어 | MIT |
+| `vi` | 베트남어 | MIT |
 
-## Usage
+## 사용법
 
 ```ts
 import { checkText, suggest, createChecker } from "fixnow";
 
-// Detect misspellings (defaults to Spanish)
+// 맞춤법 오류 감지 (기본값은 스페인어)
 const issues = await checkText("Esto es un herror", {
   language: "es",
   suggestions: true,
 });
 // -> [{ offset: 11, length: 6, word: 'herror', suggestions: [...] }]
 
-// One-off correction suggestions
+// 일회성 교정 제안
 await suggest("bonjoor", { language: "fr" }); // -> ['bonjour', ...]
 
-// A checker bound to one language
+// 하나의 언어에 바인딩된 검사기
 const de = createChecker("de");
 await de.isCorrect("Haus"); // -> true
 ```
 
-CommonJS works too:
+CommonJS에서도 작동합니다:
 
 ```js
 const { checkText } = require("fixnow");
@@ -74,12 +74,12 @@ const { checkText } = require("fixnow");
 - `isCorrect(word, language?, strict?)` → `Promise<boolean>`
 - `suggest(word, { language?, max? })` → `Promise<string[]>`
 - `createChecker(language)` → bound `{ check, suggest, isCorrect, warmup }`
-- `warmup(language?)` — preload dictionaries (skip first-call decode cost)
+- `warmup(language?)` — 사전 미리 로드 (첫 호출 디코딩 비용 건너뛰기)
 - `SUPPORTED_LANGUAGES`, `LANGUAGES`, `isSupportedLanguage`
 
-**`CheckOptions`:** `language` (default `'es'`), `strict` (Spanish accent strictness),
+**`CheckOptions`:** `language` (기본값 `'es'`), `strict` (스페인어 악센트 엄격성),
 `suggestions`, `maxSuggestions` (5), `minWordLength` (3), `ignoreWords`, `isProtectedWord`.
 
-## License
+## 라이선스
 
-[MIT](./LICENSE).
+[MIT](../LICENSE).

@@ -24,45 +24,45 @@
 </p>
 </div>
 
-A tiny multilingual spell checker with correction suggestions. Dictionaries are bundled, so `npm i fixnow` gives you everything — with **zero runtime dependencies**, in both ESM and CommonJS.
+修正提案機能付きの小さな多言語スペルチェッカー。辞書がバンドルされているため、`npm i fixnow` だけで必要なものがすべて揃います — ESM および CommonJS の両方で、**実行時依存関係はゼロ**です。
 
-## Install
+## インストール
 
 ```bash
 npm i fixnow
 ```
 
-## Languages
+## 言語
 
-| Code | Language   | Dictionary license |
+| コード | 言語 | 辞書ライセンス |
 | ---- | ---------- | ------------------ |
-| `ar` | Arabic     | LGPL-3.0           |
-| `de` | German     | LGPL-3.0           |
-| `es` | Spanish    | LGPL-3.0           |
-| `fr` | French     | MIT                |
-| `vi` | Vietnamese | MIT                |
+| `ar` | アラビア語 | LGPL-3.0 |
+| `de` | ドイツ語 | LGPL-3.0 |
+| `es` | スペイン語 | LGPL-3.0 |
+| `fr` | フランス語 | MIT |
+| `vi` | ベトナム語 | MIT |
 
-## Usage
+## 使い方
 
 ```ts
 import { checkText, suggest, createChecker } from "fixnow";
 
-// Detect misspellings (defaults to Spanish)
+// スペルミスを検出する (デフォルトはスペイン語)
 const issues = await checkText("Esto es un herror", {
   language: "es",
   suggestions: true,
 });
 // -> [{ offset: 11, length: 6, word: 'herror', suggestions: [...] }]
 
-// One-off correction suggestions
+// 1回限りの修正提案
 await suggest("bonjoor", { language: "fr" }); // -> ['bonjour', ...]
 
-// A checker bound to one language
+// 1つの言語にバインドされたチェッカー
 const de = createChecker("de");
 await de.isCorrect("Haus"); // -> true
 ```
 
-CommonJS works too:
+CommonJS も動作します：
 
 ```js
 const { checkText } = require("fixnow");
@@ -74,12 +74,12 @@ const { checkText } = require("fixnow");
 - `isCorrect(word, language?, strict?)` → `Promise<boolean>`
 - `suggest(word, { language?, max? })` → `Promise<string[]>`
 - `createChecker(language)` → bound `{ check, suggest, isCorrect, warmup }`
-- `warmup(language?)` — preload dictionaries (skip first-call decode cost)
+- `warmup(language?)` — 辞書をプリロードする (初回呼び出し時のデコードコストをスキップ)
 - `SUPPORTED_LANGUAGES`, `LANGUAGES`, `isSupportedLanguage`
 
-**`CheckOptions`:** `language` (default `'es'`), `strict` (Spanish accent strictness),
+**`CheckOptions`:** `language` (デフォルト `'es'`), `strict` (スペイン語のアクセントの厳密さ),
 `suggestions`, `maxSuggestions` (5), `minWordLength` (3), `ignoreWords`, `isProtectedWord`.
 
-## License
+## ライセンス
 
-[MIT](./LICENSE).
+[MIT](../LICENSE).

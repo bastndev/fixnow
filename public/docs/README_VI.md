@@ -24,45 +24,45 @@
 </p>
 </div>
 
-A tiny multilingual spell checker with correction suggestions. Dictionaries are bundled, so `npm i fixnow` gives you everything — with **zero runtime dependencies**, in both ESM and CommonJS.
+Một trình kiểm tra lỗi chính tả đa ngôn ngữ nhỏ gọn với các đề xuất sửa đổi. Từ điển đã được đóng gói sẵn, vì vậy chỉ cần `npm i fixnow` là bạn có mọi thứ — với **không phụ thuộc thời gian chạy**, hỗ trợ cả ESM và CommonJS.
 
-## Install
+## Cài đặt
 
 ```bash
 npm i fixnow
 ```
 
-## Languages
+## Ngôn ngữ
 
-| Code | Language   | Dictionary license |
+| Mã | Ngôn ngữ | Giấy phép từ điển |
 | ---- | ---------- | ------------------ |
-| `ar` | Arabic     | LGPL-3.0           |
-| `de` | German     | LGPL-3.0           |
-| `es` | Spanish    | LGPL-3.0           |
-| `fr` | French     | MIT                |
-| `vi` | Vietnamese | MIT                |
+| `ar` | Tiếng Ả Rập | LGPL-3.0 |
+| `de` | Tiếng Đức | LGPL-3.0 |
+| `es` | Tiếng Tây Ban Nha| LGPL-3.0 |
+| `fr` | Tiếng Pháp | MIT |
+| `vi` | Tiếng Việt | MIT |
 
-## Usage
+## Cách sử dụng
 
 ```ts
 import { checkText, suggest, createChecker } from "fixnow";
 
-// Detect misspellings (defaults to Spanish)
+// Phát hiện lỗi chính tả (mặc định là tiếng Tây Ban Nha)
 const issues = await checkText("Esto es un herror", {
   language: "es",
   suggestions: true,
 });
 // -> [{ offset: 11, length: 6, word: 'herror', suggestions: [...] }]
 
-// One-off correction suggestions
+// Đề xuất sửa chữa một lần
 await suggest("bonjoor", { language: "fr" }); // -> ['bonjour', ...]
 
-// A checker bound to one language
+// Một trình kiểm tra bị ràng buộc vào một ngôn ngữ
 const de = createChecker("de");
 await de.isCorrect("Haus"); // -> true
 ```
 
-CommonJS works too:
+CommonJS cũng hoạt động:
 
 ```js
 const { checkText } = require("fixnow");
@@ -74,12 +74,12 @@ const { checkText } = require("fixnow");
 - `isCorrect(word, language?, strict?)` → `Promise<boolean>`
 - `suggest(word, { language?, max? })` → `Promise<string[]>`
 - `createChecker(language)` → bound `{ check, suggest, isCorrect, warmup }`
-- `warmup(language?)` — preload dictionaries (skip first-call decode cost)
+- `warmup(language?)` — tải trước từ điển (bỏ qua chi phí giải mã ở lần gọi đầu tiên)
 - `SUPPORTED_LANGUAGES`, `LANGUAGES`, `isSupportedLanguage`
 
-**`CheckOptions`:** `language` (default `'es'`), `strict` (Spanish accent strictness),
+**`CheckOptions`:** `language` (mặc định `'es'`), `strict` (độ nghiêm ngặt về dấu của tiếng Tây Ban Nha),
 `suggestions`, `maxSuggestions` (5), `minWordLength` (3), `ignoreWords`, `isProtectedWord`.
 
-## License
+## Giấy phép
 
-[MIT](./LICENSE).
+[MIT](../LICENSE).

@@ -24,45 +24,45 @@
 </p>
 </div>
 
-A tiny multilingual spell checker with correction suggestions. Dictionaries are bundled, so `npm i fixnow` gives you everything — with **zero runtime dependencies**, in both ESM and CommonJS.
+Un minuscule correcteur orthographique multilingue avec suggestions de correction. Les dictionnaires sont inclus, donc `npm i fixnow` vous donne tout — avec **zéro dépendance d'exécution**, à la fois en ESM et en CommonJS.
 
-## Install
+## Installation
 
 ```bash
 npm i fixnow
 ```
 
-## Languages
+## Langues
 
-| Code | Language   | Dictionary license |
+| Code | Langue | Licence du dictionnaire |
 | ---- | ---------- | ------------------ |
-| `ar` | Arabic     | LGPL-3.0           |
-| `de` | German     | LGPL-3.0           |
-| `es` | Spanish    | LGPL-3.0           |
-| `fr` | French     | MIT                |
-| `vi` | Vietnamese | MIT                |
+| `ar` | Arabe | LGPL-3.0 |
+| `de` | Allemand | LGPL-3.0 |
+| `es` | Espagnol | LGPL-3.0 |
+| `fr` | Français | MIT |
+| `vi` | Vietnamien | MIT |
 
-## Usage
+## Utilisation
 
 ```ts
 import { checkText, suggest, createChecker } from "fixnow";
 
-// Detect misspellings (defaults to Spanish)
+// Détecter les fautes d'orthographe (par défaut en espagnol)
 const issues = await checkText("Esto es un herror", {
   language: "es",
   suggestions: true,
 });
 // -> [{ offset: 11, length: 6, word: 'herror', suggestions: [...] }]
 
-// One-off correction suggestions
+// Suggestions de correction ponctuelles
 await suggest("bonjoor", { language: "fr" }); // -> ['bonjour', ...]
 
-// A checker bound to one language
+// Un correcteur lié à une langue
 const de = createChecker("de");
 await de.isCorrect("Haus"); // -> true
 ```
 
-CommonJS works too:
+CommonJS fonctionne aussi :
 
 ```js
 const { checkText } = require("fixnow");
@@ -74,12 +74,12 @@ const { checkText } = require("fixnow");
 - `isCorrect(word, language?, strict?)` → `Promise<boolean>`
 - `suggest(word, { language?, max? })` → `Promise<string[]>`
 - `createChecker(language)` → bound `{ check, suggest, isCorrect, warmup }`
-- `warmup(language?)` — preload dictionaries (skip first-call decode cost)
+- `warmup(language?)` — précharger les dictionnaires (éviter le coût de décodage au premier appel)
 - `SUPPORTED_LANGUAGES`, `LANGUAGES`, `isSupportedLanguage`
 
-**`CheckOptions`:** `language` (default `'es'`), `strict` (Spanish accent strictness),
+**`CheckOptions`:** `language` (par défaut `'es'`), `strict` (rigueur des accents espagnols),
 `suggestions`, `maxSuggestions` (5), `minWordLength` (3), `ignoreWords`, `isProtectedWord`.
 
-## License
+## Licence
 
-[MIT](./LICENSE).
+[MIT](../LICENSE).

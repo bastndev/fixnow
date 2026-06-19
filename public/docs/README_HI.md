@@ -24,45 +24,45 @@
 </p>
 </div>
 
-A tiny multilingual spell checker with correction suggestions. Dictionaries are bundled, so `npm i fixnow` gives you everything — with **zero runtime dependencies**, in both ESM and CommonJS.
+सुधार सुझावों के साथ एक छोटा बहुभाषी वर्तनी जांचकर्ता। शब्दकोश बंडल किए गए हैं, इसलिए `npm i fixnow` आपको वह सब कुछ देता है जिसकी आपको आवश्यकता है — ESM और CommonJS दोनों में **शून्य रनटाइम निर्भरता** के साथ।
 
-## Install
+## इंस्टालेशन
 
 ```bash
 npm i fixnow
 ```
 
-## Languages
+## भाषाएँ
 
-| Code | Language   | Dictionary license |
-| ---- | ---------- | ------------------ |
-| `ar` | Arabic     | LGPL-3.0           |
-| `de` | German     | LGPL-3.0           |
-| `es` | Spanish    | LGPL-3.0           |
-| `fr` | French     | MIT                |
-| `vi` | Vietnamese | MIT                |
+| कोड  | भाषा     | शब्दकोश लाइसेंस |
+| ---- | -------- | --------------- |
+| `ar` | अरबी     | LGPL-3.0        |
+| `de` | जर्मन    | LGPL-3.0        |
+| `es` | स्पेनिश  | LGPL-3.0        |
+| `fr` | फ्रेंच   | MIT             |
+| `vi` | वियतनामी | MIT             |
 
-## Usage
+## उपयोग
 
 ```ts
 import { checkText, suggest, createChecker } from "fixnow";
 
-// Detect misspellings (defaults to Spanish)
+// वर्तनी की गलतियों का पता लगाएं (डिफ़ॉल्ट स्पेनिश है)
 const issues = await checkText("Esto es un herror", {
   language: "es",
   suggestions: true,
 });
 // -> [{ offset: 11, length: 6, word: 'herror', suggestions: [...] }]
 
-// One-off correction suggestions
+// एकमुश्त सुधार सुझाव
 await suggest("bonjoor", { language: "fr" }); // -> ['bonjour', ...]
 
-// A checker bound to one language
+// एक भाषा से बंधा हुआ चेकर
 const de = createChecker("de");
 await de.isCorrect("Haus"); // -> true
 ```
 
-CommonJS works too:
+CommonJS भी काम करता है:
 
 ```js
 const { checkText } = require("fixnow");
@@ -74,12 +74,12 @@ const { checkText } = require("fixnow");
 - `isCorrect(word, language?, strict?)` → `Promise<boolean>`
 - `suggest(word, { language?, max? })` → `Promise<string[]>`
 - `createChecker(language)` → bound `{ check, suggest, isCorrect, warmup }`
-- `warmup(language?)` — preload dictionaries (skip first-call decode cost)
+- `warmup(language?)` — शब्दकोशों को प्रीलोड करें (पहली कॉल डिकोड लागत छोड़ें)
 - `SUPPORTED_LANGUAGES`, `LANGUAGES`, `isSupportedLanguage`
 
-**`CheckOptions`:** `language` (default `'es'`), `strict` (Spanish accent strictness),
+**`CheckOptions`:** `language` (डिफ़ॉल्ट `'es'`), `strict` (स्पेनिश उच्चारण कठोरता),
 `suggestions`, `maxSuggestions` (5), `minWordLength` (3), `ignoreWords`, `isProtectedWord`.
 
-## License
+## लाइसेंस
 
-[MIT](./LICENSE).
+[MIT](../LICENSE).

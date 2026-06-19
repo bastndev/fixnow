@@ -24,45 +24,45 @@
 </p>
 </div>
 
-A tiny multilingual spell checker with correction suggestions. Dictionaries are bundled, so `npm i fixnow` gives you everything — with **zero runtime dependencies**, in both ESM and CommonJS.
+مدقق إملائي متعدد اللغات صغير الحجم مع اقتراحات تصحيح. القواميس مضمنة، لذا `npm i fixnow` يمنحك كل ما تحتاجه — مع **صفر تبعيات وقت التشغيل**، في كل من ESM و CommonJS.
 
-## Install
+## التثبيت
 
 ```bash
 npm i fixnow
 ```
 
-## Languages
+## اللغات
 
-| Code | Language   | Dictionary license |
+| الرمز | اللغة | ترخيص القاموس |
 | ---- | ---------- | ------------------ |
-| `ar` | Arabic     | LGPL-3.0           |
-| `de` | German     | LGPL-3.0           |
-| `es` | Spanish    | LGPL-3.0           |
-| `fr` | French     | MIT                |
-| `vi` | Vietnamese | MIT                |
+| `ar` | العربية | LGPL-3.0 |
+| `de` | الألمانية | LGPL-3.0 |
+| `es` | الإسبانية | LGPL-3.0 |
+| `fr` | الفرنسية | MIT |
+| `vi` | الفيتنامية | MIT |
 
-## Usage
+## الاستخدام
 
 ```ts
 import { checkText, suggest, createChecker } from "fixnow";
 
-// Detect misspellings (defaults to Spanish)
+// كشف الأخطاء الإملائية (الافتراضي هو الإسبانية)
 const issues = await checkText("Esto es un herror", {
   language: "es",
   suggestions: true,
 });
 // -> [{ offset: 11, length: 6, word: 'herror', suggestions: [...] }]
 
-// One-off correction suggestions
+// اقتراحات تصحيح لمرة واحدة
 await suggest("bonjoor", { language: "fr" }); // -> ['bonjour', ...]
 
-// A checker bound to one language
+// مدقق مرتبط بلغة واحدة
 const de = createChecker("de");
 await de.isCorrect("Haus"); // -> true
 ```
 
-CommonJS works too:
+CommonJS يعمل أيضًا:
 
 ```js
 const { checkText } = require("fixnow");
@@ -74,12 +74,12 @@ const { checkText } = require("fixnow");
 - `isCorrect(word, language?, strict?)` → `Promise<boolean>`
 - `suggest(word, { language?, max? })` → `Promise<string[]>`
 - `createChecker(language)` → bound `{ check, suggest, isCorrect, warmup }`
-- `warmup(language?)` — preload dictionaries (skip first-call decode cost)
+- `warmup(language?)` — التحميل المسبق للقواميس (تخطي تكلفة فك التشفير في الاستدعاء الأول)
 - `SUPPORTED_LANGUAGES`, `LANGUAGES`, `isSupportedLanguage`
 
-**`CheckOptions`:** `language` (default `'es'`), `strict` (Spanish accent strictness),
-`suggestions`, `maxSuggestions` (5), `minWordLength` (3), `ignoreWords`, `isProtectedWord`.
+**`CheckOptions`:** `language` (الافتراضي `'es'`)، `strict` (صرامة اللكنة الإسبانية)،
+`suggestions`، `maxSuggestions` (5)، `minWordLength` (3)، `ignoreWords`، `isProtectedWord`.
 
-## License
+## الترخيص
 
-[MIT](./LICENSE).
+[MIT](../LICENSE).
