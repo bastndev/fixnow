@@ -24,45 +24,45 @@
 </p>
 </div>
 
-A tiny multilingual spell checker with correction suggestions. Dictionaries are bundled, so `npm i fixnow` gives you everything — with **zero runtime dependencies**, in both ESM and CommonJS.
+一个微型的多语言拼写检查器，支持纠错建议。自带词典，只需 `npm i fixnow` 即可获得一切 —— **零运行时依赖**，支持 ESM 和 CommonJS。
 
-## Install
+## 安装
 
 ```bash
 npm i fixnow
 ```
 
-## Languages
+## 语言
 
-| Code | Language   | Dictionary license |
+| 代码 | 语言 | 词典许可证 |
 | ---- | ---------- | ------------------ |
-| `ar` | Arabic     | LGPL-3.0           |
-| `de` | German     | LGPL-3.0           |
-| `es` | Spanish    | LGPL-3.0           |
-| `fr` | French     | MIT                |
-| `vi` | Vietnamese | MIT                |
+| `ar` | 阿拉伯语 | LGPL-3.0 |
+| `de` | 德语 | LGPL-3.0 |
+| `es` | 西班牙语 | LGPL-3.0 |
+| `fr` | 法语 | MIT |
+| `vi` | 越南语 | MIT |
 
-## Usage
+## 使用方法
 
 ```ts
 import { checkText, suggest, createChecker } from "fixnow";
 
-// Detect misspellings (defaults to Spanish)
+// 检测拼写错误 (默认为西班牙语)
 const issues = await checkText("Esto es un herror", {
   language: "es",
   suggestions: true,
 });
 // -> [{ offset: 11, length: 6, word: 'herror', suggestions: [...] }]
 
-// One-off correction suggestions
+// 一次性纠错建议
 await suggest("bonjoor", { language: "fr" }); // -> ['bonjour', ...]
 
-// A checker bound to one language
+// 绑定到特定语言的检查器
 const de = createChecker("de");
 await de.isCorrect("Haus"); // -> true
 ```
 
-CommonJS works too:
+同样支持 CommonJS:
 
 ```js
 const { checkText } = require("fixnow");
@@ -74,12 +74,12 @@ const { checkText } = require("fixnow");
 - `isCorrect(word, language?, strict?)` → `Promise<boolean>`
 - `suggest(word, { language?, max? })` → `Promise<string[]>`
 - `createChecker(language)` → bound `{ check, suggest, isCorrect, warmup }`
-- `warmup(language?)` — preload dictionaries (skip first-call decode cost)
+- `warmup(language?)` — 预加载词典 (跳过首次调用的解码开销)
 - `SUPPORTED_LANGUAGES`, `LANGUAGES`, `isSupportedLanguage`
 
-**`CheckOptions`:** `language` (default `'es'`), `strict` (Spanish accent strictness),
+**`CheckOptions`:** `language` (默认 `'es'`), `strict` (西班牙语重音严格模式),
 `suggestions`, `maxSuggestions` (5), `minWordLength` (3), `ignoreWords`, `isProtectedWord`.
 
-## License
+## 许可证
 
-[MIT](./LICENSE).
+[MIT](../LICENSE).
