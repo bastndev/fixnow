@@ -5,7 +5,7 @@ export default defineConfig({
   format: ['esm', 'cjs'],
   dts: true,
   clean: true,
-  sourcemap: true,
+  sourcemap: false,
   target: 'node20',
   // Inline cspell-trie-lib (and its deps) so the published package has zero
   // runtime dependencies and the CJS build works without the ESM-only import

@@ -43,6 +43,31 @@ assert.equal(await isCorrect('Haus', 'de'), true, 'de: "Haus" is correct');
 assert.equal(typeof (await isCorrect('عمل', 'ar')), 'boolean', 'ar: returns a verdict');
 assert.equal(typeof (await isCorrect('việc', 'vi')), 'boolean', 'vi: returns a verdict');
 
+// --- ignoreWords / flagWords ---------------------------------------------
+assert.equal(
+  (await checkText('Esto es un herror', { language: 'es', ignoreWords: ['herror'] })).length,
+  0,
+  'ignoreWords suppresses a flagged word',
+);
+const flagged = await checkText('Esta palabra es correcta', { language: 'es', flagWords: ['correcta'] });
+assert.ok(flagged.some((i) => i.word === 'correcta'), 'flagWords flags a valid dictionary word');
+assert.equal(
+  (await checkText('palabra correcta', {
+    language: 'es',
+    flagWords: ['correcta'],
+    ignoreWords: ['correcta'],
+  })).length,
+  0,
+  'ignoreWords takes precedence over flagWords',
+);
+
+// --- unsupported language rejects with a clear error ---------------------
+await assert.rejects(
+  checkText('some text here', { language: 'ja' }),
+  /unsupported language/i,
+  'unsupported language rejects with a clear message',
+);
+
 // --- Bound checker -------------------------------------------------------
 const es = createChecker('es');
 assert.equal(await es.isCorrect('palabra'), true, 'createChecker("es") works');

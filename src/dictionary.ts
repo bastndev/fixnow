@@ -4,7 +4,7 @@ import { fileURLToPath } from 'node:url';
 import { gunzipSync } from 'node:zlib';
 import { decodeTrie } from 'cspell-trie-lib';
 import type { ITrie } from 'cspell-trie-lib';
-import { LANGUAGES, type LanguageCode } from './languages';
+import { LANGUAGES, SUPPORTED_LANGUAGES, isSupportedLanguage, type LanguageCode } from './languages';
 import type { Dictionary } from './types';
 
 // The built entry (dist/index.{js,cjs}) sits one level below the package root,
@@ -33,6 +33,14 @@ const cache = new Map<LanguageCode, Promise<Dictionary>>();
 
 /** Loads and decodes a language dictionary, caching the result. */
 export function loadDictionary(language: LanguageCode): Promise<Dictionary> {
+  if (!isSupportedLanguage(language)) {
+    return Promise.reject(
+      new Error(
+        `fixnow: unsupported language "${language}". Supported languages: ${SUPPORTED_LANGUAGES.join(', ')}.`,
+      ),
+    );
+  }
+
   let pending = cache.get(language);
   if (!pending) {
     pending = decode(language).catch((error: unknown) => {

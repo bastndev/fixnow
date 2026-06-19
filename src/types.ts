@@ -27,6 +27,12 @@ export interface CheckOptions {
   minWordLength?: number;
   /** Words to always accept (case-insensitive), e.g. an app-specific allowlist. */
   ignoreWords?: Iterable<string>;
+  /**
+   * Words to always flag as misspelled (case-insensitive), even when the
+   * dictionary contains them — e.g. your own list of common personal typos.
+   * Applies unless the word is also in `ignoreWords` / `isProtectedWord`.
+   */
+  flagWords?: Iterable<string>;
   /** Custom predicate to skip a word before it is checked (e.g. protected terms). */
   isProtectedWord?: (word: string) => boolean;
 }

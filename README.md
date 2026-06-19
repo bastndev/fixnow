@@ -24,12 +24,20 @@
 </p>
 </div>
 
+<br>
+
 A tiny multilingual spell checker with correction suggestions. Dictionaries are bundled, so `npm i fixnow` gives you everything — with **zero runtime dependencies**, in both ESM and CommonJS.
 
 ## Install
 
 ```bash
 npm i fixnow
+```
+
+or
+
+```bash
+bun i fixnow
 ```
 
 ## Languages
@@ -78,7 +86,7 @@ const { checkText } = require("fixnow");
 - `SUPPORTED_LANGUAGES`, `LANGUAGES`, `isSupportedLanguage`
 
 **`CheckOptions`:** `language` (default `'es'`), `strict` (Spanish accent strictness),
-`suggestions`, `maxSuggestions` (5), `minWordLength` (3), `ignoreWords`, `isProtectedWord`.
+`suggestions`, `maxSuggestions` (5), `minWordLength` (3), `ignoreWords`, `flagWords`, `isProtectedWord`.
 
 ## License
 
