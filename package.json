@@ -1,0 +1,66 @@
+{
+  "name": "fixnow",
+  "version": "0.1.0",
+  "description": "Tiny multilingual spell checker with suggestions. Arabic, German, Spanish, French and Vietnamese dictionaries bundled — one install, zero runtime dependencies.",
+  "type": "module",
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs"
+    }
+  },
+  "files": [
+    "dist",
+    "dictionaries",
+    "THIRD-PARTY-NOTICES.md"
+  ],
+  "sideEffects": false,
+  "scripts": {
+    "build": "tsup",
+    "clean": "rm -rf dist",
+    "prepublishOnly": "npm run build",
+    "test": "node test/smoke.mjs"
+  },
+  "keywords": [
+    "spell",
+    "spellcheck",
+    "spelling",
+    "spell-checker",
+    "dictionary",
+    "cspell",
+    "suggestions",
+    "typo",
+    "i18n",
+    "arabic",
+    "german",
+    "spanish",
+    "french",
+    "vietnamese"
+  ],
+  "author": "Gohit X (bastndev)",
+  "license": "MIT",
+  "homepage": "https://github.com/bastndev/fixnow#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bastndev/fixnow.git"
+  },
+  "bugs": {
+    "url": "https://github.com/bastndev/fixnow/issues"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "devDependencies": {
+    "@types/node": "^26.0.0",
+    "cspell-trie-lib": "^10.0.1",
+    "tsup": "^8.5.1",
+    "typescript": "^6.0.3"
+  }
+}

@@ -1,0 +1,10 @@
+node_modules/
+dist/
+*.tsbuildinfo
+.DS_Store
+npm-debug.log*
+*.tgz
+
+# Local staging area: upstream cspell / cspell-dicts clones + the extension
+# source used as reference. Not part of the published package (~632 MB).
+analizar/
