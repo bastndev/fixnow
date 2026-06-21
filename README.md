@@ -46,8 +46,11 @@ bun i fixnow
 | ---- | ---------- | ------------------ |
 | `ar` | Arabic     | LGPL-3.0           |
 | `de` | German     | LGPL-3.0           |
+| `en` | English    | MIT                |
 | `es` | Spanish    | LGPL-3.0           |
 | `fr` | French     | MIT                |
+| `pt` | Portuguese | GPL-3.0-or-later   |
+| `ru` | Russian    | GPL-3.0-or-later   |
 | `vi` | Vietnamese | MIT                |
 
 ## Usage
