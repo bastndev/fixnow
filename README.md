@@ -35,21 +35,35 @@
 
 > A tiny multilingual spell checker with correction suggestions. Dictionaries are bundled, so `npm i fixnow` gives you everything — with **zero runtime dependencies**, in both ESM and CommonJS.
 
-## ✨ Features
+## Features
 
-- 📦 **Zero Dependencies** — Keeps your `node_modules` clean and lightweight.
-- 🌍 **Built-in Dictionaries** — Includes Arabic, German, English, Spanish, French, Portuguese, Russian, and Vietnamese.
-- ⚡ **Slim Builds** — Import only the language you need (e.g. `import { check } from "fixnow/es"`) to optimize bundle size.
-- 🛡️ **Smart Tokenization** — Automatically ignores code spans, URLs, emails, and identifiers to prevent false positives.
-- 🧩 **Universal** — Works seamlessly in both **ESM** and **CommonJS** projects.
+- **Zero Dependencies** — Keeps your `node_modules` clean and lightweight.
+- **Built-in Dictionaries** — Includes Arabic, German, English, Spanish, French, Portuguese, Russian, and Vietnamese.
+- **Slim Builds** — Import only the language you need (e.g. `import { check } from "fixnow/es"`) to optimize bundle size.
+- **Smart Tokenization** — Automatically ignores code spans, URLs, emails, and identifiers to prevent false positives.
+- **Universal** — Works seamlessly in both ESM and CommonJS projects.
 
-## 🚀 Install
+## Architecture
+
+```mermaid
+flowchart LR
+    Input["Input Text"] --> Tokenizer
+    Tokenizer --> |"Skips Code / URLs"| Check{"Dictionary"}
+    Check -->|"Valid Word"| Pass["No Issues"]
+    Check -->|"Typo Detected"| Engine("Correction Engine")
+    Engine --> Issues["SpellIssue[]"]
+
+    style Input fill:#18181b,stroke:#ef4444,stroke-width:2px,color:#fff
+    style Issues fill:#18181b,stroke:#ef4444,stroke-width:2px,color:#fff
+```
+
+## Install
 
 ```bash
 npm i fixnow
 ```
 
-## 🌍 Languages
+## Languages
 
 | Code | Language   | Dictionary license |
 | ---- | ---------- | ------------------ |
@@ -62,7 +76,7 @@ npm i fixnow
 | `ru` | Russian    | GPL-3.0-or-later   |
 | `vi` | Vietnamese | MIT                |
 
-## 💻 Usage
+## Usage
 
 ```ts
 import { checkText, suggest, createChecker } from "fixnow";
@@ -96,7 +110,7 @@ CommonJS works too:
 const { checkText } = require("fixnow");
 ```
 
-### 📖 API
+### API
 
 - `checkText(text, options)` → `Promise<SpellIssue[]>`
 - `isCorrect(word, language, options?)` → `Promise<boolean>`
@@ -208,6 +222,6 @@ breaking change:
   });
   ```
 
-## 📄 License
+## License
 
 [MIT](./LICENSE)
