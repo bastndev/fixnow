@@ -141,6 +141,32 @@ await suggest("bonjoor", 3); // bound suggest is (word, max?)
 The slim entries (`fixnow/ar`, `fixnow/de`, `fixnow/en`, `fixnow/es`, `fixnow/fr`,
 `fixnow/pt`, `fixnow/ru`, `fixnow/vi`) re-export a checker pre-bound to that language.
 
+## Bundling
+
+fixnow reads its dictionaries from disk at runtime — they ship as files under
+`node_modules/fixnow/dictionaries/`, not as inlined bytes in the JS. So any bundler
+must treat `fixnow` as **external**, leaving it to load from `node_modules` at runtime.
+This is required for **VS Code extensions** and any **CJS bundle**: inlining fixnow into
+a CJS output strips the path anchor it uses to find its dictionaries, and it will throw
+a clear "mark 'fixnow' as external" error instead of resolving them.
+
+```js
+// esbuild
+await esbuild.build({
+  entryPoints: ["src/extension.ts"],
+  bundle: true,
+  format: "cjs",
+  platform: "node",
+  external: ["fixnow"],
+});
+```
+
+The matching option for other bundlers:
+
+- **Vite** — `build.rollupOptions.external: ['fixnow']`
+- **Rollup** — `external: ['fixnow']`
+- **webpack** — `externals: { fixnow: 'commonjs fixnow' }`
+
 ## Migrating from 1.x
 
 `2.0.0` cleans up three rough edges from the extraction-from-F1 release. Each is a
