@@ -1,4 +1,4 @@
-export const SUPPORTED_LANGUAGES = ['ar', 'de', 'es', 'fr', 'vi'] as const;
+export const SUPPORTED_LANGUAGES = ['ar', 'de', 'en', 'es', 'fr', 'pt', 'ru', 'vi'] as const;
 
 export type LanguageCode = (typeof SUPPORTED_LANGUAGES)[number];
 
@@ -18,8 +18,11 @@ export interface LanguageInfo {
 export const LANGUAGES: Record<LanguageCode, LanguageInfo> = {
   ar: { code: 'ar', name: 'Arabic', trie: 'ar.trie.gz', license: 'LGPL-3.0-only' },
   de: { code: 'de', name: 'German', trie: 'de.trie.gz', license: 'LGPL-3.0-only', compound: true },
+  en: { code: 'en', name: 'English', trie: 'en.trie.gz', license: 'MIT' },
   es: { code: 'es', name: 'Spanish', trie: 'es.trie.gz', license: 'LGPL-3.0-only' },
   fr: { code: 'fr', name: 'French', trie: 'fr.trie.gz', license: 'MIT' },
+  pt: { code: 'pt', name: 'Portuguese', trie: 'pt.trie.gz', license: 'GPL-3.0-or-later' },
+  ru: { code: 'ru', name: 'Russian', trie: 'ru.trie.gz', license: 'GPL-3.0-or-later' },
   vi: { code: 'vi', name: 'Vietnamese', trie: 'vi.trie.gz', license: 'MIT' },
 };
 

@@ -2,14 +2,18 @@
   <a href="https://github.com/bastndev/fixnow">
     <img alt="fixnow logo" src="https://raw.githubusercontent.com/bastndev/fixnow/main/public/github/banner.webp" height="128">
   </a>
-  <h1> </h1>
+
+<br>
 
 <a href="https://www.npmjs.com/package/fixnow"><img alt="NPM version" src="https://img.shields.io/npm/v/fixnow.svg?style=for-the-badge&labelColor=000000"></a>
 <a href="https://www.npmjs.com/package/fixnow"><img alt="NPM Downloads" src="https://img.shields.io/npm/dm/fixnow.svg?style=for-the-badge&labelColor=000000"></a>
 <a href="https://github.com/bastndev/fixnow/blob/main/LICENSE"><img alt="License" src="https://img.shields.io/npm/l/fixnow.svg?style=for-the-badge&labelColor=000000"></a>
 <a href="https://github.com/bastndev/fixnow/stargazers"><img alt="GitHub Stars" src="https://img.shields.io/github/stars/bastndev/fixnow.svg?style=for-the-badge&labelColor=000000"></a>
 
+---
+
 <p align="center">
+  <a href="https://github.com/bastndev/fixnow/blob/main/README.md">English 🇬🇧</a> |
   <a href="https://github.com/bastndev/fixnow/blob/main/public/docs/README_ES.md">Español 🇪🇸</a> |
   <a href="https://github.com/bastndev/fixnow/blob/main/public/docs/README_ZH.md">中文 🇨🇳</a> |
   <a href="https://github.com/bastndev/fixnow/blob/main/public/docs/README_DE.md">Deutsch 🇩🇪</a> |
@@ -19,8 +23,7 @@
   <a href="https://github.com/bastndev/fixnow/blob/main/public/docs/README_PT.md">Português 🇧🇷</a> |
   <a href="https://github.com/bastndev/fixnow/blob/main/public/docs/README_RU.md">Русский 🇷🇺</a> |
   <a href="https://github.com/bastndev/fixnow/blob/main/public/docs/README_VI.md">Tiếng Việt 🇻🇳</a> |
-  <a href="https://github.com/bastndev/fixnow/blob/main/public/docs/README_AR.md">العربية 🇸🇦</a> |
-  <a href="https://github.com/bastndev/fixnow/blob/main/public/docs/README_HI.md">हिन्दी 🇮🇳</a><span>...</span>
+  <a href="https://github.com/bastndev/fixnow/blob/main/public/docs/README_AR.md">العربية 🇸🇦</a><span>...</span>
 </p>
 </div>
 
@@ -38,8 +41,11 @@ npm i fixnow
 | ---- | -------- | --------------- |
 | `ar` | अरबी     | LGPL-3.0        |
 | `de` | जर्मन    | LGPL-3.0        |
+| `en` | अंग्रेज़ी | MIT |
 | `es` | स्पेनिश  | LGPL-3.0        |
 | `fr` | फ्रेंच   | MIT             |
+| `pt` | पुर्तगाली | GPL-3.0-or-later |
+| `ru` | रूसी | GPL-3.0-or-later |
 | `vi` | वियतनामी | MIT             |
 
 ## उपयोग
@@ -78,8 +84,8 @@ const { checkText } = require("fixnow");
 - `SUPPORTED_LANGUAGES`, `LANGUAGES`, `isSupportedLanguage`
 
 **`CheckOptions`:** `language` (डिफ़ॉल्ट `'es'`), `strict` (स्पेनिश उच्चारण कठोरता),
-`suggestions`, `maxSuggestions` (5), `minWordLength` (3), `ignoreWords`, `isProtectedWord`.
+`suggestions`, `maxSuggestions` (5), `minWordLength` (3), `ignoreWords`, `flagWords`, `isProtectedWord`.
 
 ## लाइसेंस
 
-[MIT](../LICENSE).
+[MIT](../LICENSE)

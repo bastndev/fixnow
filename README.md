@@ -2,12 +2,15 @@
   <a href="https://github.com/bastndev/fixnow">
     <img alt="fixnow logo" src="https://raw.githubusercontent.com/bastndev/fixnow/main/public/github/banner.webp" height="128">
   </a>
-  <h1> </h1>
+
+<br>
 
 <a href="https://www.npmjs.com/package/fixnow"><img alt="NPM version" src="https://img.shields.io/npm/v/fixnow.svg?style=for-the-badge&labelColor=000000"></a>
 <a href="https://www.npmjs.com/package/fixnow"><img alt="NPM Downloads" src="https://img.shields.io/npm/dm/fixnow.svg?style=for-the-badge&labelColor=000000"></a>
 <a href="https://github.com/bastndev/fixnow/blob/main/LICENSE"><img alt="License" src="https://img.shields.io/npm/l/fixnow.svg?style=for-the-badge&labelColor=000000"></a>
 <a href="https://github.com/bastndev/fixnow/stargazers"><img alt="GitHub Stars" src="https://img.shields.io/github/stars/bastndev/fixnow.svg?style=for-the-badge&labelColor=000000"></a>
+
+---
 
 <p align="center">
   <a href="https://github.com/bastndev/fixnow/blob/main/public/docs/README_ES.md">Español 🇪🇸</a> |
@@ -34,20 +37,17 @@ A tiny multilingual spell checker with correction suggestions. Dictionaries are 
 npm i fixnow
 ```
 
-or
-
-```bash
-bun i fixnow
-```
-
 ## Languages
 
 | Code | Language   | Dictionary license |
 | ---- | ---------- | ------------------ |
 | `ar` | Arabic     | LGPL-3.0           |
 | `de` | German     | LGPL-3.0           |
+| `en` | English    | MIT                |
 | `es` | Spanish    | LGPL-3.0           |
 | `fr` | French     | MIT                |
+| `pt` | Portuguese | GPL-3.0-or-later   |
+| `ru` | Russian    | GPL-3.0-or-later   |
 | `vi` | Vietnamese | MIT                |
 
 ## Usage
@@ -90,4 +90,4 @@ const { checkText } = require("fixnow");
 
 ## License
 
-[MIT](./LICENSE).
+[MIT](./LICENSE)

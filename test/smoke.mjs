@@ -39,6 +39,19 @@ console.log('fr  "bonjoor" ->', await suggest('bonjoor', { language: 'fr', max: 
 // --- German (compound matching enabled) ----------------------------------
 assert.equal(await isCorrect('Haus', 'de'), true, 'de: "Haus" is correct');
 
+// --- English -------------------------------------------------------------
+assert.equal(await isCorrect('hello', 'en'), true, 'en: "hello" is correct');
+assert.equal(await isCorrect('helo', 'en'), false, 'en: "helo" is a typo');
+console.log('en  "helo"  ->', await suggest('helo', { language: 'en', max: 3 }));
+
+// --- Russian -------------------------------------------------------------
+assert.equal(await isCorrect('привет', 'ru'), true, 'ru: "привет" is correct');
+assert.equal(await isCorrect('привед', 'ru'), false, 'ru: "привед" is a typo');
+
+// --- Portuguese ----------------------------------------------------------
+assert.equal(await isCorrect('obrigado', 'pt'), true, 'pt: "obrigado" is correct');
+assert.equal(await isCorrect('obrigaado', 'pt'), false, 'pt: "obrigaado" is a typo');
+
 // --- Arabic & Vietnamese load and return a verdict -----------------------
 assert.equal(typeof (await isCorrect('عمل', 'ar')), 'boolean', 'ar: returns a verdict');
 assert.equal(typeof (await isCorrect('việc', 'vi')), 'boolean', 'vi: returns a verdict');

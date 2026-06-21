@@ -2,16 +2,19 @@
   <a href="https://github.com/bastndev/fixnow">
     <img alt="fixnow logo" src="https://raw.githubusercontent.com/bastndev/fixnow/main/public/github/banner.webp" height="128">
   </a>
-  <h1> </h1>
+
+<br>
 
 <a href="https://www.npmjs.com/package/fixnow"><img alt="NPM version" src="https://img.shields.io/npm/v/fixnow.svg?style=for-the-badge&labelColor=000000"></a>
 <a href="https://www.npmjs.com/package/fixnow"><img alt="NPM Downloads" src="https://img.shields.io/npm/dm/fixnow.svg?style=for-the-badge&labelColor=000000"></a>
 <a href="https://github.com/bastndev/fixnow/blob/main/LICENSE"><img alt="License" src="https://img.shields.io/npm/l/fixnow.svg?style=for-the-badge&labelColor=000000"></a>
 <a href="https://github.com/bastndev/fixnow/stargazers"><img alt="GitHub Stars" src="https://img.shields.io/github/stars/bastndev/fixnow.svg?style=for-the-badge&labelColor=000000"></a>
 
+---
+
 <p align="center">
+  <a href="https://github.com/bastndev/fixnow/blob/main/README.md">English 🇬🇧</a> |
   <a href="https://github.com/bastndev/fixnow/blob/main/public/docs/README_ES.md">Español 🇪🇸</a> |
-  <a href="https://github.com/bastndev/fixnow/blob/main/public/docs/README_ZH.md">中文 🇨🇳</a> |
   <a href="https://github.com/bastndev/fixnow/blob/main/public/docs/README_DE.md">Deutsch 🇩🇪</a> |
   <a href="https://github.com/bastndev/fixnow/blob/main/public/docs/README_FR.md">Français 🇫🇷</a> |
   <a href="https://github.com/bastndev/fixnow/blob/main/public/docs/README_JA.md">日本語 🇯🇵</a> |
@@ -38,8 +41,11 @@ npm i fixnow
 | ---- | ---------- | ------------------ |
 | `ar` | 阿拉伯语 | LGPL-3.0 |
 | `de` | 德语 | LGPL-3.0 |
+| `en` | 英语 | MIT |
 | `es` | 西班牙语 | LGPL-3.0 |
 | `fr` | 法语 | MIT |
+| `pt` | 葡萄牙语 | GPL-3.0-or-later |
+| `ru` | 俄语 | GPL-3.0-or-later |
 | `vi` | 越南语 | MIT |
 
 ## 使用方法
@@ -78,8 +84,8 @@ const { checkText } = require("fixnow");
 - `SUPPORTED_LANGUAGES`, `LANGUAGES`, `isSupportedLanguage`
 
 **`CheckOptions`:** `language` (默认 `'es'`), `strict` (西班牙语重音严格模式),
-`suggestions`, `maxSuggestions` (5), `minWordLength` (3), `ignoreWords`, `isProtectedWord`.
+`suggestions`, `maxSuggestions` (5), `minWordLength` (3), `ignoreWords`, `flagWords`, `isProtectedWord`.
 
 ## 许可证
 
-[MIT](../LICENSE).
+[MIT](../LICENSE)
