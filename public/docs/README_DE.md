@@ -5,12 +5,16 @@
 
 <br>
 
+<h1></h1>
+
+<br>
+
 <a href="https://www.npmjs.com/package/fixnow"><img alt="NPM version" src="https://img.shields.io/npm/v/fixnow.svg?style=for-the-badge&labelColor=000000"></a>
 <a href="https://www.npmjs.com/package/fixnow"><img alt="NPM Downloads" src="https://img.shields.io/npm/dm/fixnow.svg?style=for-the-badge&labelColor=000000"></a>
 <a href="https://github.com/bastndev/fixnow/blob/main/LICENSE"><img alt="License" src="https://img.shields.io/npm/l/fixnow.svg?style=for-the-badge&labelColor=000000"></a>
 <a href="https://github.com/bastndev/fixnow/stargazers"><img alt="GitHub Stars" src="https://img.shields.io/github/stars/bastndev/fixnow.svg?style=for-the-badge&labelColor=000000"></a>
 
----
+<h1></h1>
 
 <p align="center">
   <a href="https://github.com/bastndev/fixnow/blob/main/README.md">English 🇬🇧</a> |
@@ -26,6 +30,8 @@
   <a href="https://github.com/bastndev/fixnow/blob/main/public/docs/README_HI.md">हिन्दी 🇮🇳</a><span>...</span>
 </p>
 </div>
+
+<br>
 
 Ein winziges mehrsprachiges Rechtschreibprüfprogramm mit Korrekturvorschlägen. Wörterbücher sind gebündelt, sodass `npm i fixnow` Ihnen alles bietet — mit **null Laufzeitabhängigkeiten**, sowohl in ESM als auch in CommonJS.
 

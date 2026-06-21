@@ -5,12 +5,16 @@
 
 <br>
 
+<h1></h1>
+
+<br>
+
 <a href="https://www.npmjs.com/package/fixnow"><img alt="NPM version" src="https://img.shields.io/npm/v/fixnow.svg?style=for-the-badge&labelColor=000000"></a>
 <a href="https://www.npmjs.com/package/fixnow"><img alt="NPM Downloads" src="https://img.shields.io/npm/dm/fixnow.svg?style=for-the-badge&labelColor=000000"></a>
 <a href="https://github.com/bastndev/fixnow/blob/main/LICENSE"><img alt="License" src="https://img.shields.io/npm/l/fixnow.svg?style=for-the-badge&labelColor=000000"></a>
 <a href="https://github.com/bastndev/fixnow/stargazers"><img alt="GitHub Stars" src="https://img.shields.io/github/stars/bastndev/fixnow.svg?style=for-the-badge&labelColor=000000"></a>
 
----
+<h1></h1>
 
 <p align="center">
   <a href="https://github.com/bastndev/fixnow/blob/main/README.md">English 🇬🇧</a> |
@@ -26,6 +30,8 @@
   <a href="https://github.com/bastndev/fixnow/blob/main/public/docs/README_HI.md">हिन्दी 🇮🇳</a><span>...</span>
 </p>
 </div>
+
+<br>
 
 교정 제안 기능이 있는 작은 다국어 맞춤법 검사기. 사전이 번들로 제공되므로 `npm i fixnow` 만으로 필요한 모든 것을 얻을 수 있습니다 — ESM 및 CommonJS 모두에서 **런타임 종속성 제로**입니다.
 

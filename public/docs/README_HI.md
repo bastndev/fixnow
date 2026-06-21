@@ -5,12 +5,16 @@
 
 <br>
 
+<h1></h1>
+
+<br>
+
 <a href="https://www.npmjs.com/package/fixnow"><img alt="NPM version" src="https://img.shields.io/npm/v/fixnow.svg?style=for-the-badge&labelColor=000000"></a>
 <a href="https://www.npmjs.com/package/fixnow"><img alt="NPM Downloads" src="https://img.shields.io/npm/dm/fixnow.svg?style=for-the-badge&labelColor=000000"></a>
 <a href="https://github.com/bastndev/fixnow/blob/main/LICENSE"><img alt="License" src="https://img.shields.io/npm/l/fixnow.svg?style=for-the-badge&labelColor=000000"></a>
 <a href="https://github.com/bastndev/fixnow/stargazers"><img alt="GitHub Stars" src="https://img.shields.io/github/stars/bastndev/fixnow.svg?style=for-the-badge&labelColor=000000"></a>
 
----
+<h1></h1>
 
 <p align="center">
   <a href="https://github.com/bastndev/fixnow/blob/main/README.md">English 🇬🇧</a> |
@@ -26,6 +30,8 @@
   <a href="https://github.com/bastndev/fixnow/blob/main/public/docs/README_AR.md">العربية 🇸🇦</a><span>...</span>
 </p>
 </div>
+
+<br>
 
 सुधार सुझावों के साथ एक छोटा बहुभाषी वर्तनी जांचकर्ता। शब्दकोश बंडल किए गए हैं, इसलिए `npm i fixnow` आपको वह सब कुछ देता है जिसकी आपको आवश्यकता है — ESM और CommonJS दोनों में **शून्य रनटाइम निर्भरता** के साथ।
 
