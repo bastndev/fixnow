@@ -1,6 +1,6 @@
 {
   "name": "fixnow",
-  "version": "1.0.1",
+  "version": "1.0.0",
   "description": "Tiny multilingual spell checker with suggestions. Arabic, German, English, Spanish, French, Portuguese, Russian and Vietnamese dictionaries bundled — one install, zero runtime dependencies.",
   "type": "module",
   "main": "./dist/index.cjs",
@@ -26,7 +26,7 @@
   "scripts": {
     "build": "tsup",
     "clean": "rm -rf dist",
-    "prepublishOnly": "npm run build",
+    "prepublishOnly": "bun run build",
     "test": "node test/smoke.mjs"
   },
   "keywords": [
