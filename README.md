@@ -9,31 +9,53 @@
 
 <br>
 
-<a href="https://www.npmjs.com/package/fixnow"><img alt="NPM version" src="https://img.shields.io/npm/v/fixnow.svg?style=for-the-badge&labelColor=000000"></a>
-<a href="https://www.npmjs.com/package/fixnow"><img alt="NPM Downloads" src="https://img.shields.io/npm/dm/fixnow.svg?style=for-the-badge&labelColor=000000"></a>
-<a href="https://github.com/bastndev/fixnow/blob/main/LICENSE"><img alt="License" src="https://img.shields.io/npm/l/fixnow.svg?style=for-the-badge&labelColor=000000"></a>
-<a href="https://github.com/bastndev/fixnow/stargazers"><img alt="GitHub Stars" src="https://img.shields.io/github/stars/bastndev/fixnow.svg?style=for-the-badge&labelColor=000000"></a>
+<a href="https://www.npmjs.com/package/fixnow"><img alt="NPM version" src="https://img.shields.io/npm/v/fixnow.svg?style=for-the-badge&logo=npm&color=ef4444&labelColor=18181b"></a>
+<a href="https://www.npmjs.com/package/fixnow"><img alt="NPM Downloads" src="https://img.shields.io/npm/dm/fixnow.svg?style=for-the-badge&logo=npm&color=ef4444&labelColor=18181b"></a>
+<a href="https://github.com/bastndev/fixnow/blob/main/LICENSE"><img alt="License" src="https://img.shields.io/npm/l/fixnow.svg?style=for-the-badge&color=ef4444&labelColor=18181b"></a>
+<a href="https://github.com/bastndev/fixnow/stargazers"><img alt="GitHub Stars" src="https://img.shields.io/github/stars/bastndev/fixnow.svg?style=for-the-badge&logo=github&color=ef4444&labelColor=18181b"></a>
 
-<h1></h1>
+<br>
 
 <p align="center">
-  <a href="https://github.com/bastndev/fixnow/blob/main/public/docs/README_ES.md">Español 🇪🇸</a> |
-  <a href="https://github.com/bastndev/fixnow/blob/main/public/docs/README_ZH.md">中文 🇨🇳</a> |
-  <a href="https://github.com/bastndev/fixnow/blob/main/public/docs/README_DE.md">Deutsch 🇩🇪</a> |
-  <a href="https://github.com/bastndev/fixnow/blob/main/public/docs/README_FR.md">Français 🇫🇷</a> |
-  <a href="https://github.com/bastndev/fixnow/blob/main/public/docs/README_JA.md">日本語 🇯🇵</a> |
-  <a href="https://github.com/bastndev/fixnow/blob/main/public/docs/README_KO.md">한국어 🇰🇷</a> |
-  <a href="https://github.com/bastndev/fixnow/blob/main/public/docs/README_PT.md">Português 🇧🇷</a> |
-  <a href="https://github.com/bastndev/fixnow/blob/main/public/docs/README_RU.md">Русский 🇷🇺</a> |
-  <a href="https://github.com/bastndev/fixnow/blob/main/public/docs/README_VI.md">Tiếng Việt 🇻🇳</a> |
-  <a href="https://github.com/bastndev/fixnow/blob/main/public/docs/README_AR.md">العربية 🇸🇦</a> |
-  <a href="https://github.com/bastndev/fixnow/blob/main/public/docs/README_HI.md">हिन्दी 🇮🇳</a><span>...</span>
+  <a href="https://github.com/bastndev/fixnow/blob/main/public/docs/README_ES.md">Español 🇪🇸</a> •
+  <a href="https://github.com/bastndev/fixnow/blob/main/public/docs/README_ZH.md">中文 🇨🇳</a> •
+  <a href="https://github.com/bastndev/fixnow/blob/main/public/docs/README_DE.md">Deutsch 🇩🇪</a> •
+  <a href="https://github.com/bastndev/fixnow/blob/main/public/docs/README_FR.md">Français 🇫🇷</a> •
+  <a href="https://github.com/bastndev/fixnow/blob/main/public/docs/README_JA.md">日本語 🇯🇵</a> •
+  <a href="https://github.com/bastndev/fixnow/blob/main/public/docs/README_KO.md">한국어 🇰🇷</a> •
+  <a href="https://github.com/bastndev/fixnow/blob/main/public/docs/README_PT.md">Português 🇧🇷</a> •
+  <a href="https://github.com/bastndev/fixnow/blob/main/public/docs/README_RU.md">Русский 🇷🇺</a> •
+  <a href="https://github.com/bastndev/fixnow/blob/main/public/docs/README_VI.md">Tiếng Việt 🇻🇳</a> •
+  <a href="https://github.com/bastndev/fixnow/blob/main/public/docs/README_AR.md">العربية 🇸🇦</a> •
+  <a href="https://github.com/bastndev/fixnow/blob/main/public/docs/README_HI.md">हिन्दी 🇮🇳</a>
 </p>
 </div>
 
 <br>
 
-A tiny multilingual spell checker with correction suggestions. Dictionaries are bundled, so `npm i fixnow` gives you everything — with **zero runtime dependencies**, in both ESM and CommonJS.
+> A tiny multilingual spell checker with correction suggestions. Dictionaries are bundled, so `npm i fixnow` gives you everything — with **zero runtime dependencies**, in both ESM and CommonJS.
+
+## Features
+
+- 📦 **Zero Dependencies** — Keeps your `node_modules` clean and lightweight.
+- 🌍 **Built-in Dictionaries** — Includes Arabic, German, English, Spanish, French, Portuguese, Russian, and Vietnamese.
+- ⚡ **Slim Builds** — Import only the language you need (e.g. `import { check } from "fixnow/es"`) to optimize bundle size.
+- 🛡️ **Smart Tokenization** — Automatically ignores code spans, URLs, emails, and identifiers to prevent false positives.
+- 🧩 **Universal** — Works seamlessly in both ESM and CommonJS projects.
+
+## Architecture
+
+```mermaid
+flowchart LR
+    Input["Input Text"] --> Tokenizer
+    Tokenizer --> |"Skips Code / URLs"| Check{"Dictionary"}
+    Check -->|"Valid Word"| Pass["No Issues"]
+    Check -->|"Typo Detected"| Engine("Correction Engine")
+    Engine --> Issues["SpellIssue[]"]
+
+    style Input fill:#18181b,stroke:#ef4444,stroke-width:2px,color:#fff
+    style Issues fill:#18181b,stroke:#ef4444,stroke-width:2px,color:#fff
+```
 
 ## Install
 
@@ -126,7 +148,7 @@ await checkText(text, { language: "en", protectedSegments: false });
 
 The same option is exposed on `tokenize(text, protectedSegments)`.
 
-### Slim builds
+### Slim Builds
 
 If you only need one language, import it via the language subpath. Your bundler only
 copies the dictionary you actually use:
@@ -140,6 +162,32 @@ await suggest("bonjoor", 3); // bound suggest is (word, max?)
 
 The slim entries (`fixnow/ar`, `fixnow/de`, `fixnow/en`, `fixnow/es`, `fixnow/fr`,
 `fixnow/pt`, `fixnow/ru`, `fixnow/vi`) re-export a checker pre-bound to that language.
+
+## Bundling
+
+fixnow reads its dictionaries from disk at runtime — they ship as files under
+`node_modules/fixnow/dictionaries/`, not as inlined bytes in the JS. So any bundler
+must treat `fixnow` as **external**, leaving it to load from `node_modules` at runtime.
+This is required for **VS Code extensions** and any **CJS bundle**: inlining fixnow into
+a CJS output strips the path anchor it uses to find its dictionaries, and it will throw
+a clear "mark 'fixnow' as external" error instead of resolving them.
+
+```js
+// esbuild
+await esbuild.build({
+  entryPoints: ["src/extension.ts"],
+  bundle: true,
+  format: "cjs",
+  platform: "node",
+  external: ["fixnow"],
+});
+```
+
+The matching option for other bundlers:
+
+- **Vite** — `build.rollupOptions.external: ['fixnow']`
+- **Rollup** — `external: ['fixnow']`
+- **webpack** — `externals: { fixnow: 'commonjs fixnow' }`
 
 ## Migrating from 1.x
 

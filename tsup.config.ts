@@ -21,8 +21,14 @@ export default defineConfig({
   // runtime dependencies and the CJS build works without the ESM-only import
   // dance the extension currently needs.
   noExternal: [/.*/],
-  // Provides import.meta.url in the CJS output and __dirname in the ESM output,
-  // so dictionary paths resolve correctly in both.
+  // Provides import.meta.url in the CJS output (via __filename), which
+  // resolvePackageRoot reads to locate `dictionaries/` when fixnow runs from
+  // node_modules. NB: src/dictionary.ts deliberately avoids referencing
+  // __dirname so this option does NOT inject an eager ESM __dirname shim —
+  // that shim is itself fileURLToPath(import.meta.url) and would throw at load
+  // time once a downstream bundler empties import.meta. Such bundlers must
+  // still mark fixnow external (esbuild: external: ['fixnow']); the shimmed
+  // values don't survive re-bundling.
   shims: true,
   outExtension({ format }) {
     return { js: format === 'esm' ? '.js' : '.cjs' };

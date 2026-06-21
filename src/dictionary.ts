@@ -7,10 +7,35 @@ import type { ITrie } from 'cspell-trie-lib';
 import { LANGUAGES, SUPPORTED_LANGUAGES, isSupportedLanguage, type LanguageCode } from './languages';
 import type { Dictionary } from './types';
 
-// Each built entry (dist/index.{js,cjs}, dist/es.{js,cjs}, …) sits one level
-// below the package root, where the `dictionaries/` folder is shipped. tsup's
-// `shims` option makes import.meta.url resolve correctly in both ESM and CJS.
-const PACKAGE_ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
+// Resolve the package root (where `dictionaries/` ships). Direct execution —
+// ESM, or CJS via tsup's shim — gives a usable import.meta.url. A downstream
+// bundler that inlines fixnow into CJS empties import.meta, so guard the read
+// instead of letting fileURLToPath(undefined) throw; when there's no usable
+// url we throw an actionable error telling the consumer to mark fixnow
+// external. We deliberately do NOT fall back to a bare `__dirname`: referencing
+// it makes tsup's `shims` inject an *eager* ESM __dirname polyfill (itself
+// fileURLToPath(import.meta.url)) that runs at module load and re-introduces
+// the very opaque crash this guard exists to prevent once a bundler empties
+// import.meta. import.meta.url already covers direct ESM and (shimmed) CJS.
+function resolvePackageRoot(): string {
+  let url: string | undefined;
+  try {
+    url = (import.meta as { url?: string }).url;
+  } catch {
+    url = undefined;
+  }
+  if (url) {
+    return join(dirname(fileURLToPath(url)), '..');
+  }
+  // No on-disk anchor — fixnow has been inlined into a bundle, where its
+  // dictionaries don't exist. Fail loudly with the fix instead of cryptically.
+  throw new Error(
+    "fixnow could not locate its dictionaries. Mark 'fixnow' as external in " +
+      "your bundler (esbuild: external: ['fixnow']) so it loads from node_modules.",
+  );
+}
+
+const PACKAGE_ROOT = resolvePackageRoot();
 
 class TrieDictionary implements Dictionary {
   constructor(
@@ -64,7 +89,18 @@ export function loadDictionary(language: LanguageCode): Promise<Dictionary> {
 async function decode(language: LanguageCode): Promise<Dictionary> {
   const info = LANGUAGES[language];
   const file = join(PACKAGE_ROOT, 'dictionaries', language, info.trie);
-  const text = gunzipSync(await readFile(file)).toString('utf8');
+  let buf: Buffer;
+  try {
+    buf = await readFile(file);
+  } catch (cause) {
+    throw new Error(
+      `fixnow could not read its "${language}" dictionary at ${file}. If you ` +
+        "bundle your app, mark 'fixnow' as external (esbuild: external: ['fixnow']) " +
+        'so it loads from node_modules at runtime.',
+      { cause },
+    );
+  }
+  const text = gunzipSync(buf).toString('utf8');
   return new TrieDictionary(decodeTrie(text), info.compound ?? false);
 }
 
