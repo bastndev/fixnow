@@ -53,7 +53,7 @@ Publishes the package to npm.
 <br>
 <br>
 
----
+--- bun pm view fixnow version
 
 <br>
 <br>
