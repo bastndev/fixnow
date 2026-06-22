@@ -3,7 +3,7 @@
 ## Login
 
 ```bash
-bun login --auth-type=web
+npm login --auth-type=web
 ```
 
 Authenticates your npm account from the browser.
