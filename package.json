@@ -1,6 +1,6 @@
 {
   "name": "fixnow",
-  "version": "2.0.2",
+  "version": "2.0.3",
   "description": "Tiny multilingual spell checker with suggestions. Arabic, German, English, Spanish, French, Portuguese, Russian and Vietnamese dictionaries bundled — one install, zero runtime dependencies.",
   "type": "module",
   "main": "./dist/index.cjs",
