@@ -1,6 +1,8 @@
 <div align="center">
 
-<a href="https://www.gohit.xyz/package/fixnow"><img alt="Lynx Theme Pro" src="https://raw.githubusercontent.com/bastndev/fixnow/refs/heads/main/public/banner.webp" height="128"></a>
+  <a href="https://www.gohit.xyz/package/fixnow">
+    <img alt="fixnow logo" src="https://raw.githubusercontent.com/bastndev/fixnow/main/public/banner.webp" height="128">
+  </a>
 
 <br>
 
