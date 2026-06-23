@@ -45,6 +45,20 @@
 - 🛡️ **Smart Tokenization** — Automatically ignores code spans, URLs, emails, and identifiers to prevent false positives.
 - 🧩 **Universal** — Works seamlessly in both ESM and CommonJS projects.
 
+## Architecture
+
+```mermaid
+flowchart LR
+    Input["Input Text"] --> Tokenizer
+    Tokenizer --> |"Skips Code / URLs"| Check{"Dictionary"}
+    Check -->|"Valid Word"| Pass["No Issues"]
+    Check -->|"Typo Detected"| Engine("Correction Engine")
+    Engine --> Issues["SpellIssue[]"]
+
+    style Input fill:#18181b,stroke:#ef4444,stroke-width:2px,color:#fff
+    style Issues fill:#18181b,stroke:#ef4444,stroke-width:2px,color:#fff
+```
+
 ## Install
 
 ```bash
