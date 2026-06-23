@@ -1,6 +1,6 @@
 <div align="center">
 
-  <a href="https://www.gohit.xyz/packages/fixnow">
+  <a href="https://www.gohit.xyz/package/fixnow">
     <img alt="fixnow logo" src="https://raw.githubusercontent.com/bastndev/fixnow/main/public/banner.webp" height="128">
   </a>
 
