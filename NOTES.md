@@ -1,364 +1,117 @@
-# 📦 Essential bun commands for publishing packages
+# ✅ NPM Provenance with GitHub Actions
 
-## Login
-
-```bash
-npm login --auth-type=web
-```
-
-Authenticates your npm account from the browser.
+Guide to enable the verified badge on npmjs.com.
 
 ---
 
-## Verify session
+## Step 1 — npm Token
 
-```bash
-bun whoami
-```
+Go to [npmjs.com/settings/~/tokens](https://www.npmjs.com/settings/~/tokens)
 
-Shows the user you are authenticated as.
+→ **Generate New Token** → **Granular Access Token**
 
----
+| Field | Value |
+|-------|-------|
+| Token name | `github-<package-name>` |
+| Bypass two-factor authentication (2FA) | ✅ checked |
+| Permissions | **Read and write** |
+| Select packages | only `<package-name>` |
+| Expiration | 90 days (maximum) |
 
-## Check if a name is available
-
-```bash
-bun pm view <package-name>
-```
-
-If it returns `E404`, the name is free to publish.
+→ **Generate token** → copy the `npm_...`
 
 ---
 
-## Simulate the package to publish
+## Step 2 — GitHub Secret
 
-```bash
-bun pm pack --dry-run
-```
+Go to the repo → **Settings** → **Secrets and variables** → **Actions** → **New repository secret**
 
-Shows exactly which files will be included in the package.
+| Field | Value |
+|-------|-------|
+| Name | `NPM_TOKEN` |
+| Secret | the copied `npm_...` |
 
----
-
-## Publish the package
-
-```bash
-bun publish
-```
-
-Publishes the package to npm.
-
-<br>
-<br>
-<br>
-<br>
-
---- bun pm view fixnow version
-
-<br>
-<br>
-<br>
-<br
-
-##  
-
-# Update 
-
-```bash
-bun pm version patch; git push --follow-tags; bun publish
-```
-
-<br>
-
-## Update version (Bug fix)
-
-```bash
-bun pm version patch
-```
-
-Increments the version from `1.0.0` → `1.0.1`.
+→ **Add secret**
 
 ---
 
-## Update version (New feature)
+## Step 3 — Workflow
 
-```bash
-bun pm version minor
+Create `.github/workflows/publish.yml`:
+
+```yaml
+name: Publish
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    permissions:
+      id-token: write
+      contents: read
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: latest
+
+      - name: Install dependencies
+        run: bun install
+
+      - name: Build
+        run: bun run build
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          registry-url: 'https://registry.npmjs.org'
+
+      - name: Publish with provenance
+        run: npm publish --provenance --access public
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 ```
 
-Increments the version from `1.0.0` → `1.1.0`.
+Commit and push to `main`.
 
 ---
 
-## Update version (Breaking change)
+## Step 4 — Publish
+
+Every time you want to release a new version:
 
 ```bash
-bun pm version major
+# From main (with changes already merged)
+git tag v1.0.0 && git push origin v1.0.0
 ```
 
-Increments the version from `1.0.0` → `2.0.0`.
+GitHub Actions handles build + publish + provenance automatically.
 
 ---
 
-## Logout
+## Daily workflow
 
-```bash
-bun logout
 ```
-
-Logs out from the current account.
-
----
-
-## View package information
-
-```bash
-bun pm view <package-name>
-```
-
-Shows information of a published package.
-
----
-
-## Install a package
-
-```bash
-bun add <package-name>
-```
-
-Installs the package from npm.
-
----
-
-<br>
-
----
-
-# 📦 Publish a package to npm
-
-## 1. Login (only the first time or when switching accounts)
-
-```bash
-bun login --auth-type=web
-```
-
-Verify that the session is active:
-
-```bash
-bun whoami
-```
-
-Expected output:
-
-```text
-bastndev
+work on dev
+    ↓
+merge to main (from GitHub)
+    ↓
+git tag vX.X.X && git push origin vX.X.X
+    ↓
+✅ GitHub Actions publishes with provenance
 ```
 
 ---
 
-## 2. Enter the project
-
-```bash
-cd path/to/project
-```
-
----
-
-## 3. Check that the name is available
-
-```bash
-bun pm view <package-name>
-```
-
-Example:
-
-```bash
-bun pm view fixnow
-```
-
-If an error similar to this appears:
-
-```text
-npm ERR! code E404
-```
-
-It means the name is available to publish.
-
----
-
-## 4. Review which files will be published
-
-```bash
-bun pm pack --dry-run
-```
-
-Verify that only the necessary files appear.
-
-For example:
-
-```
-LICENSE
-README.md
-package.json
-dist/
-dictionaries/
-```
-
-And that these DO NOT appear:
-
-```
-src/
-test/
-.vscode/
-.git/
-node_modules/
-```
-
----
-
-## 5. Publish the package
-
-```bash
-bun publish
-```
-
-If the project has this script:
-
-```json
-"prepublishOnly": "bun run build"
-```
-
-bun will automatically run:
-
-```
-bun run build
-↓
-Pack
-↓
-Publish
-```
-
----
-
-# 🚀 Update an existing version
-
-## Bug fix
-
-```bash
-bun pm version patch
-bun publish
-```
-
-Example:
-
-```
-1.0.0
-↓
-1.0.1
-```
-
----
-
-## Compatible new feature
-
-```bash
-bun pm version minor
-bun publish
-```
-
-Example:
-
-```
-1.0.1
-↓
-1.1.0
-```
-
----
-
-## Incompatible change (Breaking Change)
-
-```bash
-bun pm version major
-bun publish
-```
-
-Example:
-
-:
-
-```
-1.1.0
-↓
-2.0.0
-```
-
----
-
-# ✅ Check that the publication was successful
-
-View package information:
-
-```bash
-bun pm view <package-name>
-```
-
-Example:
-
-```bash
-bun pm view fixnow
-```
-
-Or install it:
-
-```bash
-bun add <package-name>
-```
-
-Example:
-
-```bash
-bun add fixnow
-```
-
----
-
-# 📋 Pre-publish checklist
-
-- [ ] `bun whoami` returns my username.
-- [ ] The package name is available (only for the first publication).
-- [ ] The version is correct (`package.json`).
-- [ ] `bun pm pack --dry-run` shows only the necessary files.
-- [ ] The tests pass successfully.
-- [ ] The README is updated.
-- [ ] The license is included.
-- [ ] Run `bun publish`.
-
----
-
-# 📝 Full flow (first publication)
-
-```bash
-bun login --auth-type=web
-bun whoami
-
-cd path/to/project
-
-bun pm view <package-name>
-
-bun pm pack --dry-run
-
-bun publish
-```
-
----
-
-# 📝 Flow for future versions
-
-```bash
-cd path/to/project
-
-bun pm version patch   # or minor / major
-
-bun publish
-```
+## Notes
+
+- The tag must match the version in `package.json` (e.g. `v2.0.5` → `"version": "2.0.5"`)
+- If the tag already exists: `git tag -d vX.X.X && git push origin --delete vX.X.X && git tag vX.X.X && git push origin vX.X.X`
+- Token expires every 90 days — renew on npm and update the secret in GitHub
+- Each package needs its own `NPM_TOKEN` with its specific package selected
