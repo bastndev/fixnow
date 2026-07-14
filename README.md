@@ -225,6 +225,23 @@ breaking change:
   });
   ```
 
-## License
+<br>
 
-[MIT](./LICENSE)
+## 📄 License
+
+MIT © [Gohit X](https://gohit.xyz) — see [`LICENSE`](./LICENSE) for details.
+
+<br>
+
+---
+
+<div align="center">
+  <p>
+    Built with <strong>Bun</strong>, <strong>TypeScript</strong>, and <strong>Web Components</strong>.
+  </p>
+  <p>
+    <a href="https://www.gohit.xyz/package/fixnow">Website</a> ·
+    <a href="https://github.com/bastndev/fixnow">GitHub</a> ·
+    <a href="https://www.npmjs.com/package/fixnow">npm</a>
+  </p>
+</div>
