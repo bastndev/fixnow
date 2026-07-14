@@ -98,10 +98,7 @@
       }
     }
   },
-  "files": [
-    "dist",
-    "dictionaries"
-  ],
+  "files": ["dist", "dictionaries"],
   "sideEffects": false,
   "scripts": {
     "build": "tsup",
@@ -130,7 +127,7 @@
   ],
   "author": "Gohit X (bastndev)",
   "license": "MIT",
-  "homepage": "https://github.com/bastndev/fixnow#readme",
+  "homepage": "https://gohit.xyz/package/svghub",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/bastndev/fixnow.git"
